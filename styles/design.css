@@ -1,0 +1,71 @@
+body {
+background-color:#D0CCF2;
+text-align:center;
+}
+#site {
+width:980px;
+margin:0 auto;
+}
+#header {
+width:980px;
+height:150px;
+background:black;
+border-radius:10px;
+text-align:center;
+}
+#main {
+width:980px;
+}
+#left {
+float:left;
+width:150px;
+height:556px;
+background:black;
+margin-top:10px;
+margin-bottom:10px;
+}
+#center {
+float:left;
+width:640px;
+height:516px;
+background:#D0CCF2;
+margin-top:10px;
+margin-bottom:10px;
+padding-top:20px;
+padding-left:20px;
+padding-right:20px;
+padding-bottom:20px;
+}
+/* Beispiel Element in Div
+#center h1{
+padding-top:50px;
+font-size:60px;
+font-weight:bold;
+color:white;
+font-family:Courier;
+}
+*/
+#right {
+float:left;
+width:150px;
+height:556px;
+background-color:black;
+margin-top:10px;
+margin-bottom:10px;
+}
+#footer {
+color:white;
+font-family:'Times New Roman',Times,serif;
+text-align:left;
+padding-top:9px;
+padding-left:9px;
+font-size:12px;
+width:970px;
+height:30px;
+background:black;
+margin-top:20px;
+border-radius:10px;
+/*when using float in previous containers,
+clear must be done for left and right */
+clear:left;
+}
