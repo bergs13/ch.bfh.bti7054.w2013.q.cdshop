@@ -1,1 +1,8 @@
-Type: CD's
+Type: 
+	CD Shop
+Classification:
+	Categories => Live, Studio
+	Typecategories => Album, Single, Sampler/Compilation, Extended/Deluxe Album, Anniversary Album
+	Pricecategories => 1-10 CHF, 10-20 CHF, 20-30 CHF, 30-40 CHF, 40-50 CHF
+	Detailcategories => Interpret A-Z, Genre A-Z, Year 0000-2013, Kundenbewertung 1-5 stars
+	
