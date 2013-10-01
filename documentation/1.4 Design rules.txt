@@ -1,0 +1,8 @@
+- Optik: Einfach, aber nicht langweilig (Ansprechendes Logo, schönes Menü, farblich abgestimmt)
+- Navigation: Einfach und schnell (Mit wenig Klicks zum gewünschtem Ergebnis)
+- Ergebnis:	Nicht viel Platz einnehmender, aber einigermassen vollkommener Filter. Seitenweise Anzeige von Suchergebnissen (Nach Möglichkeit)
+- Coding: Erweiterbar, anpassbar und wartbar für Entwickler (Auch andere)
+	- Website Grunddesign mit externen CSS-Stylesheets und Div-Containern
+	- Laden von Seiten im Hauptbereich mit dem PHP include Befehl
+	- Links bestehend aus einem Div mit Bild und normalen Links (Low Priority: Möglichkeit dynamischer Aufbereitung anhand einer Liste)
+	- Genügend Kommentare im Code
