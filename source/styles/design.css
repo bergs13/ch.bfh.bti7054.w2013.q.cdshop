@@ -12,7 +12,7 @@ height:150px;
 background:black;
 border-radius:10px;
 text-align:center;
-}
+}#header ul li {display:inline;}#navButton {width: 124px;height: 17px;background:red;text-align:center;}
 #main {
 width:980px;
 }

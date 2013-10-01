@@ -9,12 +9,9 @@
  <body>
          <div id="site">
                  <div id="header">
-                         <img src="resources/header.png" alt="error loading resources/header.png" border="0" usemap="#navigation">
-                         <map name="navigation">
-                                 <area shape="rectangle" coords="222,115,345,132" href="index.php?page=overview" alt="&Uuml;bersicht" title="&Uuml;bersicht">
-                                 <area shape="rectangle" coords="392,115,516,132" href="index.php?page=cdeditor" alt="CD-Editor" title="CD-Editor">
-                                 <!--<area shape="rectangle" coords="564,115,686,132" href="index.php?page=thirdpage" alt="Dritte Seite" title="Dritte Seite">-->
-                         </map>
+					<img src="resources/header.png" alt="error loading resources/header.png" border="0" usemap="#navigation">
+					<div id="navButton"><a href="index.php?page=overview" alt="&Uuml;bersicht">Overview</a></div>
+					<div id="navButton"><a href="index.php?page=cdeditor" alt="CD-Editor">CD-Editor</a></div>
                  </div>
                  <div id="main">
                          <div id="left">
