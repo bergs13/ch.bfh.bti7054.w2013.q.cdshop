@@ -1,71 +1,44 @@
-body {
-background-color:#D0CCF2;
-text-align:center;
-}
-#site {
-width:980px;
-margin:0 auto;
-}
-#header {
-width:980px;
-height:150px;
-background:black;
-border-radius:10px;
-text-align:center;
-}#header ul li {display:inline;}#navButton {width: 124px;height: 17px;background:red;text-align:center;}
-#main {
-width:980px;
-}
-#left {
-float:left;
-width:150px;
-height:556px;
-background:black;
-margin-top:10px;
-margin-bottom:10px;
-}
-#center {
-float:left;
-width:640px;
-height:516px;
-background:#D0CCF2;
-margin-top:10px;
-margin-bottom:10px;
-padding-top:20px;
-padding-left:20px;
-padding-right:20px;
-padding-bottom:20px;
-}
-/* Beispiel Element in Div
-#center h1{
-padding-top:50px;
-font-size:60px;
-font-weight:bold;
-color:white;
-font-family:Courier;
-}
-*/
-#right {
-float:left;
-width:150px;
-height:556px;
-background-color:black;
-margin-top:10px;
-margin-bottom:10px;
-}
-#footer {
-color:white;
-font-family:'Times New Roman',Times,serif;
-text-align:left;
-padding-top:9px;
-padding-left:9px;
-font-size:12px;
-width:970px;
-height:30px;
-background:black;
-margin-top:20px;
-border-radius:10px;
-/*when using float in previous containers,
-clear must be done for left and right */
-clear:left;
+body {
+	background-color:#D0CCF2;
+	text-align:center;
+}
+div#site {
+	width:980px;
+	margin:0 auto;
+}
+div#header {
+	width:980px;
+	height:150px;
+	background:black;
+	border-radius:10px;
+	text-align:center;}div#header img{	border:0px;}div#header ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#header li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton {	width:124px;	height: 23px;	background:red;	text-align:center;}
+div#main {
+	width:980px;	margin-top:10px;	margin-bottom:10px;}
+div#left {
+	float:left;
+	width:150px;
+	background:black;	margin-bottom:10px;
+}
+div#center{
+	float:left;
+	width:640px;
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:20px;	margin-bottom:10px;}
+div#right {
+	float:left;
+	width:150px;
+	background-color:black;	margin-bottom:10px;
+}
+div#footer {	/*when using float in previous containers,	clear must be done for left and right */	clear:left;	color:white;
+	font-family:'Times New Roman',Times,serif;
+	text-align:left;
+	padding-top:9px;
+	padding-left:9px;
+	font-size:12px;
+	width:971px;/*9px padding*/
+	height:30px;
+	background:black;
+	border-radius:10px;
 }

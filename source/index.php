@@ -10,8 +10,10 @@
          <div id="site">
                  <div id="header">
 					<img src="resources/header.png" alt="error loading resources/header.png" border="0" usemap="#navigation">
-					<div id="navButton"><a href="index.php?page=overview" alt="&Uuml;bersicht">Overview</a></div>
-					<div id="navButton"><a href="index.php?page=cdeditor" alt="CD-Editor">CD-Editor</a></div>
+					<ul>
+						<li><div id="navButton"><a href="index.php?page=overview" alt="&Uuml;bersicht">Overview</a></div></li>
+						<li><div id="navButton"><a href="index.php?page=cdeditor" alt="CD-Editor">CD-Editor</a></div></li>
+					</ul>
                  </div>
                  <div id="main">
                          <div id="left">
