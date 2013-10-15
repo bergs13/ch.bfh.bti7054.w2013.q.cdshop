@@ -1,0 +1,1 @@
+Sidepanel	- ShoppingCart/Checkout (Info panel)	- (Filter)Navigation	- Overview 		- (Filter)		- AddToCart	- Login //If logged out	- Account //If logged in		- AccountEditor	- Administration //If logged in as an administrator		- CDEditor		- AccountManagement			- AccountOverview				- AccountEditor	- About		- AGB		- Contact 		- etc.
