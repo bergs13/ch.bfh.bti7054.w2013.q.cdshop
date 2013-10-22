@@ -10,38 +10,22 @@
 		<div id="site">
 			<div id="header">
 				<img src="resources/header.png" alt="error loading resources/header.png" border="0">
-				<ul>
-				<li><div id="navButton"><a href="index.php?page=overview" alt="&Uuml;bersicht">Overview</a></div></li>
-				<li><div id="navButton"><a href="index.php?page=login" alt="Login">Login</a></div></li>
-				<li><div id="navButton"><a href="index.php?page=administration" alt="Administration">Administration</a></div></li>
-				<li><div id="navButton"><a href="index.php?page=about" alt="About">About</a></div></li>
-				</ul>
+				<?php
+					require_once("logic/navigator.php");
+					add_page('overview', 'Overview', true); //first entry is the default page
+					add_page('login', 'Login');
+					add_page('administration', 'Administration');
+					add_page('about', 'About', false, true);//last entry displays the menu
+				?>
 			</div>
 			<div id="main">
 				<div id="left">
 					<img src="resources/left.png" alt="error loading resources/left.png">
 				</div>
 				<div id="center">
-					<?php						$pages = array('overview', 'login', 'administration', 'about');
-						$page = "";						if(isset($_GET['page']))						{
-							$page = $_GET['page'];						}
-						if (!empty($page))
-						{
-							if(in_array($page,$pages))
-							{
-								$page = dirname(__FILE__) . '/' . $page . '.php';
-								include($page);
-							}
-						else
-						{
-							echo 'Seite nicht gefunden. Zurück zur <a href="index.php">Startseite</a>';
-						}
-						}
-						else
-						{
-							//default page
-							include(dirname(__FILE__) . '/overview.php');
-						}
+					<?php
+						//navigate to the current page defined in the url (..php?page=x), if added to the navigation (page name)
+						//no page in the url displays a default page, no valid page in the url displays a go to default page message with link.						navigate();
 					?>
 				</div>
 				<div id="right">

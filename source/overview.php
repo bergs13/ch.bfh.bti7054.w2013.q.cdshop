@@ -9,17 +9,7 @@
 	<body>
 		<h1>Übersicht</h1>
 		<?php
-			$a = array	(
-							1 => array("Metallica", "Master of puppets", 1986),
-							2 => array("Slayer","Reign in blood", 1986)
-						);
-			foreach($a as $key => $value)
-			{
-				echo "$key:<br/>";
-				echo "$value[0]<br/>";
-				echo "$value[1]<br/>";
-				echo "$value[2]<br/><br/>";
-			}
-			
+			require_once("logic/cdreader.php");
+			read_all();
 		?>	</body>
 </html>

@@ -11,7 +11,7 @@ div#header {
 	height:150px;
 	background:black;
 	border-radius:10px;
-	text-align:center;}div#header img{	border:0px;}div#header ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#header li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton {	width:124px;	height: 23px;	background:white;	border-color:grey;	text-align:center;}div#navButton a:link{	color:black;}div#navButton a:visited{	color:grey;}
+	text-align:center;}div#header img{	border:0px;}div#header ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#header li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton {	width:124px;	height: 23px;	background:white;	border-color:grey;	text-align:center;	border-radius:10px;}div#navButton a:link{	color:black;}div#navButton a:visited{	color:grey;}
 div#main {
 	width:980px;	margin-top:5px;}
 div#left {
