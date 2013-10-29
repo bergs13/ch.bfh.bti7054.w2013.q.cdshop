@@ -15,6 +15,7 @@
 						require_once("logic/navigator.php");
 						add_page('overview', 'Overview', true); //first entry is the default page
 						add_page('login', 'Login');
+						add_page('account', 'Account');
 						add_page('administration', 'Administration');
 						add_page('about', 'About');//last entry displays the menu
 						display_menu();

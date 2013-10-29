@@ -64,7 +64,7 @@
 			{
 				$class = "active";
 			}
-			echo "<li><div id=\"navButton\" class=\"$class\"><a href=\"index.php?page=$pageName\" alt=\"$pageTitle\">$pageTitle</a></div></li>";
+			echo "<li><a href=\"index.php?page=$pageName\" alt=\"$pageTitle\"><div id=\"navButton\" class=\"$class\">$pageTitle</div></a></li>";
 		}
 		echo "</ul>";
 	}
