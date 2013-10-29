@@ -1,7 +1,8 @@
 <?php
 	$pages = array();
 	$defaultPage = "";
-	function add_page($pageName, $pageTitle, $isDefault = false, $displayMenu = false)
+	$activePage = "";
+	function add_page($pageName, $pageTitle, $isDefault = false)
 	{
 		global $pages;
 		global $defaultPage;
@@ -18,54 +19,76 @@
 		{
 			$defaultPage = $pageName;
 		}
-		if($displayMenu)
-		{
-			display_menu();
-		}
 	}
-	function display_menu () 
-	{
-		global $pages;
-		if(isset($pages))
-		{
-			echo "<ul>";
-			foreach($pages as $pageName => $pageTitle)
-			{
-				echo "<li><div id=\"navButton\"><a href=\"index.php?page=$pageName\" alt=\"$pageTitle\">$pageTitle</a></div></li>";
-			}
-			echo "</ul>";
-		}
-	}
-	function navigate()
+	function update_activePage()
 	{
 		global $pages;
 		global $defaultPage;
+		global $activePage;
 		$page = "";
 		if(isset($_GET['page']))
 		{
 			$page = $_GET['page'];
 		}
+		//check with array: user could enter any pagename in the adressbar
 		if (!empty($page))
 		{
 			if(array_key_exists($page, $pages))
 			{
-				include(dirname(__FILE__) . '/' . '../' . urlencode($page) . '.php');
+				$activePage = $page;
+			}
+			else 
+			{
+				$activePage = "";
+			}
+		}
+		else if(!empty($defaultPage))
+		{
+			$activePage = $defaultPage;
+		}		
+	}
+	function display_menu($update_activePage = true) 
+	{
+		global $pages;
+		global $activePage;
+		if($update_activePage)
+		{
+			update_activePage();
+		}
+		echo "<ul>";
+		foreach($pages as $pageName => $pageTitle)
+		{
+			$class = "inactive";
+			if(!empty($activePage)
+				&& $pageName == $activePage)
+			{
+				$class = "active";
+			}
+			echo "<li><div id=\"navButton\" class=\"$class\"><a href=\"index.php?page=$pageName\" alt=\"$pageTitle\">$pageTitle</a></div></li>";
+		}
+		echo "</ul>";
+	}
+	function navigate($update_activePage = false)
+	{
+		global $defaultPage;
+		global $activePage;
+		if($update_activePage)
+		{
+			update_activePage();
+		}
+		if(!empty($activePage))
+		{
+			include(dirname(__FILE__) . '/' . '../' . urlencode($activePage) . '.php');
+		}
+		else
+		{
+			if(empty($defaultPage))
+			{
+				echo 'Default-Seite nicht gefunden.';
 			}
 			else
 			{
 				echo 'Seite nicht gefunden. Zurück zur <a href="index.php">Startseite</a>';
-			}
-		}
-		else
-		{
-			if(!empty($defaultPage))
-			{
-				//default page
-				include(dirname(__FILE__) . '/'. '../' . urlencode($defaultPage). '.php');
-			}
-			else
-			{
-				echo 'Default-Seite nicht gefunden.';
 			}
 		}
 	}

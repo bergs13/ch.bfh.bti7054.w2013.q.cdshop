@@ -9,14 +9,17 @@
 	<body>
 		<div id="site">
 			<div id="header">
-				<img src="resources/header.png" alt="error loading resources/header.png" border="0">
-				<?php
-					require_once("logic/navigator.php");
-					add_page('overview', 'Overview', true); //first entry is the default page
-					add_page('login', 'Login');
-					add_page('administration', 'Administration');
-					add_page('about', 'About', false, true);//last entry displays the menu
-				?>
+				<img src="resources/header.png" alt="error loading resources/header.png" border="0">		
+				<div id="navigation">
+					<?php
+						require_once("logic/navigator.php");
+						add_page('overview', 'Overview', true); //first entry is the default page
+						add_page('login', 'Login');
+						add_page('administration', 'Administration');
+						add_page('about', 'About');//last entry displays the menu
+						display_menu();
+					?>
+				</div>
 			</div>
 			<div id="main">
 				<div id="left">
@@ -25,7 +28,8 @@
 				<div id="center">
 					<?php
 						//navigate to the current page defined in the url (..php?page=x), if added to the navigation (page name)
-						//no page in the url displays a default page, no valid page in the url displays a go to default page message with link.						navigate();
+						//no page in the url displays a default page, no valid page in the url displays a go to default page message with link.
+						navigate();
 					?>
 				</div>
 				<div id="right">
