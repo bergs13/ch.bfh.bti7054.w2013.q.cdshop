@@ -9,7 +9,7 @@
 	<body>
 		<h1>Übersicht</h1>
 		<?php
-			require_once("logic/cdmanager.php");
+			require_once("logic/php/cdmanager.php");
 			read_all();
 		?>	</body>
 </html>

@@ -9,22 +9,39 @@
 	<body>
 		<div id="site">
 			<div id="header">
-				<img src="resources/header.png" alt="error loading resources/header.png" border="0">		
+				<img src="resources/design/header.png" alt="error loading resources/design/header.png" border="0">	
+<a href="index.php?language=DE">DE</a>
+					<a href="index.php?language=EN">EN</a>				
 				<div id="navigation">
 					<?php
-						require_once("logic/navigator.php");
-						add_page('overview', 'Overview', true); //first entry is the default page
-						add_page('login', 'Login');
-						add_page('account', 'Account');
-						add_page('administration', 'Administration');
-						add_page('about', 'About');//last entry displays the menu
+						require_once("logic/php/navigator.php");
+						
+						//get the page with http get
+						$l = "";
+						if(isset($_GET['language']))
+						{
+							$l = $_GET['language'];
+						}
+						
+						//change language
+						if (!empty($l))
+						{
+							change_menu_language($l);
+						}
+						
+						
+						add_page('overview', 'Übersicht', 'Overview', true); //first entry is the default page
+						add_page('login', 'Login', 'Login');
+						add_page('account', 'Account', 'Account');
+						add_page('administration', 'Administration', 'Administration');
+						add_page('about', 'Über', 'About');//last entry displays the menu
 						display_menu();
 					?>
 				</div>
 			</div>
 			<div id="main">
 				<div id="left">
-					<img src="resources/left.png" alt="error loading resources/left.png">
+					<img src="resources/design/left.png" alt="error loading resources/design/left.png">
 				</div>
 				<div id="center">
 					<?php
@@ -34,7 +51,7 @@
 					?>
 				</div>
 				<div id="right">
-					<img src="resources/right.png" alt="error loading resources/right.png">
+					<img src="resources/design/right.png" alt="error loading resources/design/right.png">
 				</div>
 			</div>
 			<div id="footer">

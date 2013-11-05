@@ -11,7 +11,7 @@ div#header {
 	height:150px;
 	background:black;
 	border-radius:10px;
-	text-align:center;}div#header img{	border:0px;}div#navigation {	width:980px;	height:30px;	border:0px;}div#navigation ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#navigation li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton{	width:124px;	height: 23px;	border-color:grey;	text-align:center;	border-radius:10px;}div#navButton.inactive{	background:white;}div#navButton.active{	background:#E0E0E0;}div#navButton a:link{	color:black;}div#navButton a:visited{	color:grey;}
+	text-align:center;}div#header img{	border:0px;}div#navigation {	width:980px;	height:30px;	border:0px;}div#navigation ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#navigation li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton{	width:124px;	height: 23px;	text-align:center;	border: 3px solid #696969;	border-radius:10px;}div#navButton.inactive{	background:white;}div#navButton.inactive a:link{	color:black;}div#navButton.inactive a:visited{	color:#2F4F4F;}div#navButton.active{	background:black;}div#navButton.active a:link{	color:white;}div#navButton.active a:visited{	color:#D3D3D3;}div#navButtonLinkArea{	width:124px;	height: 23px;	border-radius:10px;}
 div#main {
 	width:980px;	margin-top:5px;}
 div#left {
