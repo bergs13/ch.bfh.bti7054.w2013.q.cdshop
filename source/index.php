@@ -7,35 +7,28 @@
 		<link rel="stylesheet" href="styles/design.css" type="text/css">
 	</head>
 	<body>
+		<?php
+			//Generelles
+			//Autoload for all used classes
+			function __autoload($class_name) 
+			{
+				require_once("logic/php/".$class_name.".php");
+			}
+			
+			//Authenticator handles login if needed (Post-Check)
+			$authenticator = new Authenticator;
+			$authenticator->handle_login();
+			//Authenticator manages menu pages of navigator
+			$navigator = new Navigator(true);
+			$authenticator->manage_menuitems($navigator);						
+		?>
 		<div id="site">
 			<div id="header">
-				<img src="resources/design/header.png" alt="error loading resources/design/header.png" border="0">	
-<a href="index.php?language=DE">DE</a>
-					<a href="index.php?language=EN">EN</a>				
+				<img src="resources/design/header.png" alt="error loading resources/design/header.png" border="0">				
 				<div id="navigation">
 					<?php
-						require_once("logic/php/navigator.php");
-						
-						//get the page with http get
-						$l = "";
-						if(isset($_GET['language']))
-						{
-							$l = $_GET['language'];
-						}
-						
-						//change language
-						if (!empty($l))
-						{
-							change_menu_language($l);
-						}
-						
-						
-						add_page('overview', 'Übersicht', 'Overview', true); //first entry is the default page
-						add_page('login', 'Login', 'Login');
-						add_page('account', 'Account', 'Account');
-						add_page('administration', 'Administration', 'Administration');
-						add_page('about', 'Über', 'About');//last entry displays the menu
-						display_menu();
+						//Navigator displays the menu
+						$navigator->display_menu();
 					?>
 				</div>
 			</div>
@@ -44,10 +37,10 @@
 					<img src="resources/design/left.png" alt="error loading resources/design/left.png">
 				</div>
 				<div id="center">
-					<?php
+					<?php										
 						//navigate to the current page defined in the url (..php?page=x), if added to the navigation (page name)
 						//no page in the url displays a default page, no valid page in the url displays a go to default page message with link.
-						navigate();
+						$navigator->navigate();
 					?>
 				</div>
 				<div id="right">

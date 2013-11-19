@@ -8,8 +8,8 @@
 	</head>
 	<body>
 		<h1>Übersicht</h1>
-		<?php
-			require_once("logic/php/cdmanager.php");
-			read_all();
+		<?php			
+			$manager = new CDManager;
+			$manager->read_all();
 		?>	</body>
 </html>
