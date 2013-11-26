@@ -6,45 +6,31 @@
 		private $activePage = "";
 		private $menulanguages = array("DE", "EN");
 		private $menulanguage = "DE";
-		public function add_page($pageName, $pageTitleDE, $pageTitleEN, $isDefault = false)
+		public function change_menu_language($new_menulanguage)
 		{
-			//replace umlauts with html code
-			$pageTitleDE = htmlentities($pageTitleDE); 
-			$pageTitleEN = htmlentities($pageTitleEN);
-			
-			//add page to array
-			if(!isset($this->pages))
+			//Set the language
+			if(in_array($new_menulanguage, $this->menulanguages))
 			{
-				//initialize
-				$this->pages = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
-			}
-			else
-			{
-				//expand
-				$temp = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
-				$this->pages = $this->pages + $temp;
-			}
-			
-			//mark the defaultpage
-			if($isDefault)
-			{
-				$this->defaultPage = $pageName;
+				$this->menulanguage = $new_menulanguage;
 			}
 		}
 		public function set_pages($loggedIn)
 		{
 			$this->add_page('overview', 'Übersicht', 'Overview', true); //first entry is the default page
+			$this->add_page('about', 'Über', 'About');//last entry displays the menu
 			if(!$loggedIn)
 			{
-				$this->add_page('login', 'Login', 'Login');
+				$this->add_page('login', 'Anmelden', 'Login');
 			}
 			else
 			{
-				$this->add_page('account', 'Account', 'Account');
-				$this->add_page('logout', 'Logout', 'Logout');
-				$this->add_page('administration', 'Administration', 'Administration');
+				if($_SESSION["user"] == "admin")
+				{
+					$this->add_page('administration', 'Administration', 'Administration');
+				}
+				$this->add_page('account', 'Account ('.$_SESSION["user"].')', 'Account ('.$_SESSION["user"].')');
+				$this->add_page('logout', 'Abmelden', 'Logout');
 			}
-			$this->add_page('about', 'Über', 'About');//last entry displays the menu
 		}
 		public function display_menu($updateActivePage = true) 
 		{
@@ -92,6 +78,31 @@
 				}
 			}
 		}
+		private function add_page($pageName, $pageTitleDE, $pageTitleEN, $isDefault = false)
+		{
+			//replace umlauts with html code
+			$pageTitleDE = htmlentities($pageTitleDE); 
+			$pageTitleEN = htmlentities($pageTitleEN);
+			
+			//add page to array
+			if(!isset($this->pages))
+			{
+				//initialize
+				$this->pages = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+			}
+			else
+			{
+				//expand
+				$temp = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+				$this->pages = $this->pages + $temp;
+			}
+			
+			//mark the defaultpage
+			if($isDefault)
+			{
+				$this->defaultPage = $pageName;
+			}
+		}
 		private function update_activePage()
 		{
 			$page = "";
@@ -119,14 +130,6 @@
 			{
 				$this->activePage = $this->defaultPage;
 			}		
-		}
-		function change_menu_language($new_menulanguage)
-		{
-			//Set the language
-			if(in_array($new_menulanguage, $this->menulanguages))
-			{
-				$this->menulanguage = $new_menulanguage;
-			}
 		}
 	}
 ?>

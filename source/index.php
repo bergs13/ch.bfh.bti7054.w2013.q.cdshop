@@ -19,7 +19,7 @@
 			$authenticator = new Authenticator;
 			$authenticator->handle_login();
 			//Authenticator manages menu pages of navigator
-			$navigator = new Navigator(true);
+			$navigator = new Navigator;
 			$authenticator->manage_menuitems($navigator);						
 		?>
 		<div id="site">

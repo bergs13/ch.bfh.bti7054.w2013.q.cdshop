@@ -1,6 +1,13 @@
 <?php
 	class Authenticator
 	{
+		private $userdatamanager;
+		private $users;
+		public function __construct()
+		{
+			$this->userdatamanager = new UserDataManager; 
+			$this->users = $this->userdatamanager->get_all();
+		}
 		public function display_login()
 		{
 			$this->handle_logout();
@@ -20,9 +27,20 @@
 			}
 			if(isset($_POST["user"])) 
 			{
-				if($_POST["user"]=="bergs13" && $_POST["pw"]=="test") 
+				$userValid = false;
+				while ($user = $this->users->fetch_object()) 
 				{
-					$_SESSION["user"]=$_POST["user"];
+					if($_POST["user"]==$user->username 
+						&& $_POST["pw"]==$user->password) 
+					{
+						$userValid = true;
+						$_SESSION["user"]=$_POST["user"];
+						break;
+					}
+				}
+				if(!$userValid) 
+				{
+					echo "login failed";
 				}
 			}
 		}
