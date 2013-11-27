@@ -3,9 +3,21 @@
 	{
 		private $cddatamanager;
 		private $cds;
-		public function __construct()
+		//labels
+		private $addtocartlabel;
+		public function __construct($language)
 		{
 			$this->cddatamanager = new CDDataManager; 
+			
+			//manage language texts
+			if($language == "DE")
+			{
+				$this->addtocartlabel = "In den Warenkorb";
+			}
+			else if($language = "EN")
+			{
+				$this->addtocartlabel = "Add to cart";
+			}
 		}
 		public function read_all($ordered = false, $descending = false)
 		{
@@ -25,7 +37,7 @@
 				echo "<td>";
 				echo "<form action=\"11_FormA.php\" method=\"get\">";
 				echo "<input type=\"hidden\" name=\"cdId\" value=\"$cd->id\">";
-				echo "<input type=\"submit\" value=\"Add to cart\">";
+				echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
 				echo "</form>";
 				echo "</td>";
 				echo "</tr>";

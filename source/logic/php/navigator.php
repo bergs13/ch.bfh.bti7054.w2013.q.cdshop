@@ -4,15 +4,10 @@
 		private $pages = array();
 		private $defaultPage = "";
 		private $activePage = "";
-		private $menulanguages = array("DE", "EN");
-		private $menulanguage = "DE";
-		public function change_menu_language($new_menulanguage)
+		private $menulanguage;
+		public function __construct($language)
 		{
-			//Set the language
-			if(in_array($new_menulanguage, $this->menulanguages))
-			{
-				$this->menulanguage = $new_menulanguage;
-			}
+			$this->menulanguage = $language;
 		}
 		public function set_pages($loggedIn)
 		{
@@ -42,16 +37,16 @@
 			foreach($this->pages as $pageName => $pageTitle)
 			{
 				$class = "inactive";
+				$lang = $this->menulanguage;
 				if(!empty($this->activePage)
 					&& $pageName == $this->activePage)
 				{
 					$class = "active";
 				}
-				$language = $this->menulanguage;//HTML does not accept '>' and '<'($this->menulanguage)
 				echo "<li>";
-				echo "<div id=\"navButton\" class=\"$class\">";
-				echo "<a href=\"index.php?page=$pageName\" alt=\"$pageTitle[$language]\"><div id=\"navButtonLinkArea\">$pageTitle[$language]</div></a>";
-				echo "</div>";
+				echo 	"<div id=\"navButton\" class=\"$class\">";
+				echo 		"<a href=\"index.php?page=$pageName\" alt=\"$pageTitle[$lang]\"><div id=\"navButtonLinkArea\">$pageTitle[$lang]</div></a>";
+				echo 	"</div>";
 				echo "</li>";
 			}
 			echo "</ul>";

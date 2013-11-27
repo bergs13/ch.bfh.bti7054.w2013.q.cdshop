@@ -7,9 +7,20 @@
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
-		<h1>Übersicht</h1>
-		<?php			
-			$manager = new CDManager;
+		<?php	
+			echo "<h1>";
+			$languagemanager = new LanguageManager;
+			if($languagemanager->language == "DE")
+			{
+				echo "Übersicht";
+			}
+			else if($languagemanager->language == "EN")
+			{
+				echo "Overview";
+			}
+			echo "</h1>";
+			
+			$manager = new CDManager($languagemanager->language);
 			$manager->read_all();
 		?>	</body>
 </html>

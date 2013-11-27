@@ -7,6 +7,33 @@
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
-		<h1>TODO: About</h1>
+		<?php
+		
+			$languagemanager = new LanguageManager;
+			if($languagemanager->language == "DE")
+			{
+				echo "<h1>";
+				echo "Über";
+				echo "</h1>";
+				echo "<p>";
+				echo "Adresse:<br/>";
+				echo "Teh cdshop<br/>";
+				echo "Wankdorffeldstrasse 102<br/>";
+				echo "Bern";
+				echo "</p>";
+			}
+			else if($languagemanager->language == "EN")
+			{
+				echo "<h1>";
+				echo "About";
+				echo "</h1>";
+				echo "<p>";
+				echo "Adress:<br/>";
+				echo "Teh cdshop<br/>";
+				echo "Wankdorffeldstrasse 102<br/>";
+				echo "Bern";
+				echo "</p>";
+			}
+		?>
 	</body>
 </html>

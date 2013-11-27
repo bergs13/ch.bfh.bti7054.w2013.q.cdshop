@@ -7,6 +7,18 @@
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
-		<h1>TODO: Administration</h1>
+		<?php
+			echo "<h1>";
+			$languagemanager = new LanguageManager;
+			if($languagemanager->language == "DE")
+			{
+				echo "TODO: Administration";
+			}
+			else if($languagemanager->language == "EN")
+			{
+				echo "TODO: Administration";
+			}
+			echo "</h1>";
+		?>
 	</body>
 </html>

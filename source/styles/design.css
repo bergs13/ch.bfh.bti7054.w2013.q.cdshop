@@ -11,8 +11,7 @@ div#header {
 	height:150px;
 	background:black;
 	border-radius:10px;
-	text-align:center;}div#header img{	border:0px;}div#navigation {	width:980px;	height:30px;	border:0px;}div#navigation ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#navigation li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton{	width:124px;	height: 23px;	text-align:center;	border: 3px solid #696969;	border-radius:10px;}div#navButton.inactive{	background:white;}div#navButton.inactive a:link{	color:black;}div#navButton.inactive a:visited{	color:#2F4F4F;}div#navButton.active{	background:black;}div#navButton.active a:link{	color:white;}div#navButton.active a:visited{	color:#D3D3D3;}div#navButtonLinkArea{	width:124px;	height: 23px;	border-radius:10px;}
-div#main {
+	text-align:center;}div#header img{	border:0px;}div#navigation {	width:980px;	height:30px;	border:0px;}div#navigation ul {	float:left;	list-style:none;	margin:0;	margin-top:3px;	padding:0;	position:relative;	left:50%;	text-align:center;}div#navigation li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;	right:50%;}div#navButton{	width:124px;	height: 23px;	text-align:center;	border: 3px solid #696969;	border-radius:10px;}div#navButton.inactive{	background:white;}div#navButton.inactive a:link{	color:black;}div#navButton.inactive a:visited{	color:#2F4F4F;}div#navButton.active{	background:black;}div#navButton.active a:link{	color:white;}div#navButton.active a:visited{	color:#D3D3D3;}div#navButtonLinkArea{	width:124px;	height: 23px;	border-radius:10px;}div#main {
 	width:980px;	margin-top:5px;}
 div#left {
 	float:left;
@@ -35,10 +34,10 @@ div#footer {	/*when using float in previous containers,	clear must be done fo
 	font-family:'Times New Roman',Times,serif;
 	text-align:left;
 	padding-top:9px;
-	padding-left:9px;
+	padding-left:9px;	padding-right:9px;
 	font-size:12px;
-	width:971px;/*9px padding*/
+	width:962px;/*18px (9+9) padding left and right*/
 	height:30px;
 	background:black;
 	border-radius:10px;
-}
+}div#copyright{	float:left;}div#languageNavigation{	float:right;}div#languageNavigation ul {	float:right;	list-style:none;	margin:0;	padding:0;	position:relative;	text-align:center;}div#languageNavigation li {	display:block;	float:left;	list-style:none;	margin:0;	margin-right:3px;	padding:0;	position:relative;}div#languageButton{	width:62px;	height: 16px; /*9px padding top*/	text-align:center;	border: 3px solid #696969;	border-radius:10px;}div#languageButton.inactive{	background:white;}div#languageButton.inactive a:link{	color:black;}div#languageButton.inactive a:visited{	color:#2F4F4F;}div#languageButton.active{	background:black;}div#languageButton.active a:link{	color:white;}div#languageButton.active a:visited{	color:#D3D3D3;}div#languageButtonLinkArea{	width:62px;	height: 16px; /*9px padding top*/	border-radius:10px;}

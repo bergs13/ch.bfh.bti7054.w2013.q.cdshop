@@ -7,9 +7,20 @@
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
-		<h1>Login<h1>
 		<?php
-			$authenticator = new Authenticator;
+			echo "<h1>";
+			$languagemanager = new LanguageManager;
+			if($languagemanager->language == "DE")
+			{
+				echo "Anmeldung";
+			}
+			else if($languagemanager->language == "EN")
+			{
+				echo "Login";
+			}
+			echo "</h1>";
+		
+			$authenticator = new Authenticator($languagemanager->language);
 			$authenticator->handle_logout();
 			$authenticator->display_login();
 		?>

@@ -1,4 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- Cookies -->
+<?php 
+	//Language change via link
+	if ( !empty($_GET['language']) ) 
+	{
+		$_COOKIE['language'] = $_GET['language'];
+		setcookie('language', $_COOKIE['language']);
+	} 
+?>
 <html>
 	<head>
 		<title>CD Shop</title>
@@ -7,19 +16,21 @@
 		<link rel="stylesheet" href="styles/design.css" type="text/css">
 	</head>
 	<body>
-		<?php
-			//Generelles
+		<?php		
+			//General
 			//Autoload for all used classes
 			function __autoload($class_name) 
 			{
 				require_once("logic/php/".$class_name.".php");
 			}
+			//Get the language for the content
+			$languagemanager = new LanguageManager;
 			
 			//Authenticator handles login if needed (Post-Check)
-			$authenticator = new Authenticator;
+			$authenticator = new Authenticator($languagemanager->language);
 			$authenticator->handle_login();
 			//Authenticator manages menu pages of navigator
-			$navigator = new Navigator;
+			$navigator = new Navigator($languagemanager->language);
 			$authenticator->manage_menuitems($navigator);						
 		?>
 		<div id="site">
@@ -48,7 +59,15 @@
 				</div>
 			</div>
 			<div id="footer">
-				&copy; Copyright 2013 Stefan Berger
+				<div id="copyright">
+					&copy; Copyright 2013 Stefan Berger 
+				</div>
+				<div id="languageNavigation">
+					Choose language:&nbsp;&nbsp;
+					<?php
+						$languagemanager->display_languagemenu();
+					?>
+				</div>
 			</div>
 		</div>
 	</body>
