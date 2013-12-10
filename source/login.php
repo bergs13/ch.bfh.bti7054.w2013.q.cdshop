@@ -8,18 +8,20 @@
 	</head>
 	<body>
 		<?php
-			echo "<h1>";
+			//translations
+			$login;
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				echo "Anmeldung";
+				$login = "Anmeldung";
 			}
 			else if($languagemanager->language == "EN")
 			{
-				echo "Login";
+				$login = "Login";
 			}
-			echo "</h1>";
-		
+			
+			//output
+			echo "<h1>$login</h1>";
 			$authenticator = new Authenticator($languagemanager->language);
 			$authenticator->handle_logout();
 			$authenticator->display_login();

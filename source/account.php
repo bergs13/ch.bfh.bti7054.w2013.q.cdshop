@@ -7,6 +7,21 @@
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
-		<h1>TODO: Account</h1>
+		<?php
+			//translations
+			$account;
+			$languagemanager = new LanguageManager;
+			if($languagemanager->language == "DE")
+			{
+				$account = "TODO: Konto";
+			}
+			else /*if($languagemanager->language == "EN")*/
+			{
+				$account = "TODO: Account";
+			}
+			
+			//output
+			echo "<h1>$account</h1>";
+		?>
 	</body>
 </html>

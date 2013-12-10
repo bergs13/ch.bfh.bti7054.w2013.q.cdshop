@@ -32,10 +32,10 @@
 				echo "<table>";
 				echo "<tr>";
 				echo "<td>";
-				echo "$cd->interpreter, $cd->album, $cd->year (Key=$cd->id)";
+				echo "$cd->interpreter, $cd->title, $cd->year (Key=$cd->id)";
 				echo "</td>";
 				echo "<td>";
-				echo "<form action=\"11_FormA.php\" method=\"get\">";
+				echo "<form action=\"\" method=\"get\">";
 				echo "<input type=\"hidden\" name=\"cdId\" value=\"$cd->id\">";
 				echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
 				echo "</form>";

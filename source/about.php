@@ -8,32 +8,26 @@
 	</head>
 	<body>
 		<?php
-		
+			$about;
+			$adress;
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				echo "<h1>";
-				echo "Über";
-				echo "</h1>";
-				echo "<p>";
-				echo "Adresse:<br/>";
-				echo "Teh cdshop<br/>";
-				echo "Wankdorffeldstrasse 102<br/>";
-				echo "Bern";
-				echo "</p>";
+				$about = "Über";
+				$adress = "Adresse";
 			}
-			else if($languagemanager->language == "EN")
+			else /*if($languagemanager->language == "EN")*/
 			{
-				echo "<h1>";
-				echo "About";
-				echo "</h1>";
-				echo "<p>";
-				echo "Adress:<br/>";
-				echo "Teh cdshop<br/>";
-				echo "Wankdorffeldstrasse 102<br/>";
-				echo "Bern";
-				echo "</p>";
+				$about = "About";
+				$adress = "Adress";
 			}
+			echo "<h1>$about</h1>";
+			echo "<p>";
+			echo "$adress:<br/>";
+			echo "Teh cdshop<br/>";
+			echo "Wankdorffeldstrasse 102<br/>";
+			echo "3000 Bern";
+			echo "</p>";
 		?>
 	</body>
 </html>

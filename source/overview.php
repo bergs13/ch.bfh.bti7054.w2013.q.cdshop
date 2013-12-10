@@ -8,18 +8,20 @@
 	</head>
 	<body>
 		<?php	
-			echo "<h1>";
+			//translations
+			$overview;
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				echo "Übersicht";
+				$overview = "Übersicht";
 			}
 			else if($languagemanager->language == "EN")
 			{
-				echo "Overview";
+				$overview = "Overview";
 			}
-			echo "</h1>";
 			
+			//output
+			echo "<h1>$overview</h1";
 			$manager = new CDManager($languagemanager->language);
 			$manager->read_all();
 		?>	</body>

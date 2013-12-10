@@ -15,7 +15,7 @@ div#header {
 	width:980px;	margin-top:5px;}
 div#left {
 	float:left;
-	width:150px;
+	width:150px;	height:556px;	color:white;
 	background:black;	margin-bottom:5px;
 }
 div#center{
@@ -27,8 +27,8 @@ div#center{
 	padding-bottom:20px;	margin-bottom:5px;}
 div#right {
 	float:left;
-	width:150px;
-	background-color:black;	margin-bottom:5px;
+	width:150px;	height:556px;	color:white;
+	background:black;	margin-bottom:5px;
 }
 div#footer {	/*when using float in previous containers,	clear must be done for left and right */	clear:left;	color:white;
 	font-family:'Times New Roman',Times,serif;

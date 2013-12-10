@@ -55,7 +55,20 @@
 					?>
 				</div>
 				<div id="right">
-					<img src="resources/design/right.png" alt="error loading resources/design/right.png">
+					<?php
+						$shoppingcart;
+						if (isset($_SESSION["shoppingcart"]))
+						{
+							$shoppingcart = $_SESSION["shoppingcart"];
+						}
+						else
+						{
+							$shoppingcart = new ShoppingCart;
+							$_SESSION["shoppingcart"] = $shoppingcart;
+						}
+						$authenticator->manage_shoppingcart($shoppingcart);
+						//echo "<img src=\"resources/design/right.png\" alt=\"error loading resources/design/right.png\">";
+					?>
 				</div>
 			</div>
 			<div id="footer">
@@ -63,7 +76,6 @@
 					&copy; Copyright 2013 Stefan Berger 
 				</div>
 				<div id="languageNavigation">
-					Choose language:&nbsp;&nbsp;
 					<?php
 						$languagemanager->display_languagemenu();
 					?>

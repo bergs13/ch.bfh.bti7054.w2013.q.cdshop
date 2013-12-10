@@ -15,14 +15,14 @@
 			//manage language texts
 			if($language == "DE")
 			{
-				$this->username = "Benutzername:";
-				$this->password = "Passwort:";
+				$this->username = "Benutzername";
+				$this->password = "Passwort";
 				$this->login = "Anmelden";
 			}
 			else if($language = "EN")
 			{
-				$this->username = "Username:";
-				$this->password = "Password:";
+				$this->username = "Username";
+				$this->password = "Password";
 				$this->login = "Login";
 			}
 		}
@@ -82,6 +82,13 @@
 			else
 			{
 				echo "class parameter error in Authenticator manage_menuitems";
+			}
+		}
+		public function manage_shoppingcart($shoppingcart)
+		{
+			if($shoppingcart instanceof ShoppingCart && isset($_SESSION["user"]))
+			{
+				$shoppingcart->display();
 			}
 		}
 	}

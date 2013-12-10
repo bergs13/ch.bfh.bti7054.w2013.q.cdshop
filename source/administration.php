@@ -8,17 +8,26 @@
 	</head>
 	<body>
 		<?php
-			echo "<h1>";
+			//translations
+			$administration;
+			$useradmin;
+			$cdadmin;
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				echo "TODO: Administration";
+				$administration = "Administration";
+				$useradmin = "Benutzer verwalten";
+				$cdadmin = "CDs verwalten";
 			}
-			else if($languagemanager->language == "EN")
+			else /*if($languagemanager->language == "EN")*/
 			{
-				echo "TODO: Administration";
+				$administration = "Administration";
+				$useradmin = "Manage users";
+				$cdadmin = "Manage CDs";
 			}
-			echo "</h1>";
+			
+			//page output
+			echo "<h1>$administration</h1>";
 		?>
 	</body>
 </html>

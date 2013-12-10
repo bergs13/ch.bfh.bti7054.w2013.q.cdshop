@@ -23,7 +23,7 @@
 				{
 					$this->add_page('administration', 'Administration', 'Administration');
 				}
-				$this->add_page('account', 'Account ('.$_SESSION["user"].')', 'Account ('.$_SESSION["user"].')');
+				$this->add_page('account', 'Konto ('.$_SESSION["user"].')', 'Account ('.$_SESSION["user"].')');
 				$this->add_page('logout', 'Abmelden', 'Logout');
 			}
 		}
