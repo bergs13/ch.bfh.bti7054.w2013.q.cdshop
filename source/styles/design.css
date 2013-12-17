@@ -29,9 +29,8 @@ div#right {
 	float:left;
 	width:150px;	height:556px;	color:white;
 	background:black;	margin-bottom:5px;
-}
+}div#shoppingcart {	font-size:12px;}
 div#footer {	/*when using float in previous containers,	clear must be done for left and right */	clear:left;	color:white;
-	font-family:'Times New Roman',Times,serif;
 	text-align:left;
 	padding-top:9px;
 	padding-left:9px;	padding-right:9px;

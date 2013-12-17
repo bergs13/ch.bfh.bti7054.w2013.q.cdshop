@@ -35,9 +35,12 @@
 				echo "$cd->interpreter, $cd->title, $cd->year (Key=$cd->id)";
 				echo "</td>";
 				echo "<td>";
-				echo "<form action=\"\" method=\"get\">";
-				echo "<input type=\"hidden\" name=\"cdId\" value=\"$cd->id\">";
-				echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
+				echo "<form action=\"\" method=\"post\">";
+				echo "<input type=\"hidden\" name=\"addcartcdid\" value=\"$cd->id\">";
+				echo "<input type=\"hidden\" name=\"cdinterpreter\" value=\"$cd->interpreter\">";
+				echo "<input type=\"hidden\" name=\"cdtitle\" value=\"$cd->title\">";
+				echo "<input type=\"hidden\" name=\"cdprice\" value=\"$cd->price\">";
+				echo "<input type=\"submit\" name=\"asdf\" value=\"$this->addtocartlabel\">";
 				echo "</form>";
 				echo "</td>";
 				echo "</tr>";

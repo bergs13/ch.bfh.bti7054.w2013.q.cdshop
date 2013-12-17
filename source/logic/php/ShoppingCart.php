@@ -1,40 +1,73 @@
-<?php
+<?php	
 	class ShoppingCart
 	{
-		private $cds = array();
+		private $cartentries = array();
 		public function __construct()
 		{
 		}
-		public function add_cd($cd)
+		public function handle_post()
 		{
-			if(!isset($this->cds))
+			if(isset($_POST["addcartcdid"]))
 			{
-				//initialize
-				$this->cds = array($cd->id => $cd);
+				if(isset($_POST["cdinterpreter"])
+					&& isset($_POST["cdtitle"])
+					&& isset($_POST["cdprice"]))
+				{
+					$cartentry = new ShoppingCartEntry($_POST["addcartcdid"], $_POST["cdinterpreter"], $_POST["cdtitle"], $_POST["cdprice"]);
+					$this->add_cd($_POST["addcartcdid"], $cartentry);
+				}
 			}
-			else
+			else if(isset($_POST["removecartcdid"]))
 			{
-				//expand
-				$temp = array($cd->id => $cd);
-				$this->cds = $this->cds + $temp;
-			}
-		}
-		public function remove_cd($id) 
-		{
-			if(array_key_exists($id, $this->cds))
-			{
-				unset($this->cds[$id]);
+				$this->remove_cd($_POST["removecartcdid"]);
 			}
 		}
 		public function display()
 		{
-			if(isset($this->cds))
+			if(isset($this->cartentries))
 			{
-				foreach ($this->cds as $id => $cd)
+				echo "Shopping cart v1.0</br>";
+				echo "<p>";
+				$overallpricesum = 0.00;
+				foreach ($this->cartentries as $id => $cartentry)
 				{
-					echo $cd->title;
+					$cartentry->display();
+					$overallpricesum += $cartentry->get_pricesum();
 					echo "<br/>";
 				}
+				echo "</p>";
+				echo "Total: $overallpricesum";
+			}
+		}
+		private function add_cd($cdid, $cartentry)
+		{
+			//manage cdid texts
+			if(!isset($this->cartentries))
+			{
+				//initialize
+				$this->cartentries = array($cdid => $cartentry);
+			}
+			else
+			{
+				//increase quantity and price if already in cart
+				if(array_key_exists($cdid, $this->cartentries))
+				{
+					$this->cartentries[$cdid]->increase_count();
+				}
+				//expand
+				$temp = array($cdid => $cartentry);
+				$this->cartentries = $this->cartentries + $temp;
+			}
+		}
+		private function remove_cd($id) 
+		{	
+			if($this->cartentries[$id]->get_count() > 1)
+			{
+				$this->cartentries[$id]->decrease_count();
+			}
+			else
+			{
+				unset($this->cartentries[$id]);
 			}
 		}
 	}

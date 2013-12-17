@@ -55,20 +55,23 @@
 					?>
 				</div>
 				<div id="right">
-					<?php
-						$shoppingcart;
-						if (isset($_SESSION["shoppingcart"]))
-						{
-							$shoppingcart = $_SESSION["shoppingcart"];
-						}
-						else
-						{
-							$shoppingcart = new ShoppingCart;
-							$_SESSION["shoppingcart"] = $shoppingcart;
-						}
-						$authenticator->manage_shoppingcart($shoppingcart);
-						//echo "<img src=\"resources/design/right.png\" alt=\"error loading resources/design/right.png\">";
-					?>
+					<div id="shoppingcart">
+						<?php
+							$shoppingcart;
+							if (isset($_SESSION["shoppingcart"]))
+							{
+								$shoppingcart = $_SESSION["shoppingcart"];
+							}
+							else
+							{
+								$shoppingcart = new ShoppingCart;
+								$_SESSION["shoppingcart"] = $shoppingcart;
+							}
+							$shoppingcart->handle_post();
+							$shoppingcart->display();
+						?>
+					</div>
+					<!--<img src=\"resources/design/right.png\" alt=\"error loading resources/design/right.png\">-->
 				</div>
 			</div>
 			<div id="footer">

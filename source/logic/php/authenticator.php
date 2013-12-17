@@ -84,12 +84,5 @@
 				echo "class parameter error in Authenticator manage_menuitems";
 			}
 		}
-		public function manage_shoppingcart($shoppingcart)
-		{
-			if($shoppingcart instanceof ShoppingCart && isset($_SESSION["user"]))
-			{
-				$shoppingcart->display();
-			}
-		}
 	}
 ?>
