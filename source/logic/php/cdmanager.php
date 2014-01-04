@@ -26,6 +26,7 @@
 		} 
 		private function display_list()
 		{
+			//cds with details ans add to cart buttons
 			while ($cd = $this->cds->fetch_object()) 
 			{
 				echo "<p>";
@@ -40,7 +41,7 @@
 				echo "<input type=\"hidden\" name=\"cdinterpreter\" value=\"$cd->interpreter\">";
 				echo "<input type=\"hidden\" name=\"cdtitle\" value=\"$cd->title\">";
 				echo "<input type=\"hidden\" name=\"cdprice\" value=\"$cd->price\">";
-				echo "<input type=\"submit\" name=\"asdf\" value=\"$this->addtocartlabel\">";
+				echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
 				echo "</form>";
 				echo "</td>";
 				echo "</tr>";

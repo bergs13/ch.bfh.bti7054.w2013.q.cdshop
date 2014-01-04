@@ -36,9 +36,11 @@
 		}
 		public function display()
 		{
-			echo "$this->cdinterpreter</br>";
-			echo "$this->cdtitle</br>";
-			echo "Count: ".$this->count." Price: ".$this->pricesum."</br>";
+			echo "<div id=\"shoppingcartentry\">";
+			echo 	"$this->cdinterpreter</br>";
+			echo 	"$this->cdtitle</br>";
+			echo 	"Count: ".$this->count." Price: ".$this->pricesum."</br>";
+			echo "</div";
 		}
 	}
 ?>

@@ -58,6 +58,7 @@
 					<div id="shoppingcart">
 						<?php
 							$shoppingcart;
+							//get cart from session or create if not exists
 							if (isset($_SESSION["shoppingcart"]))
 							{
 								$shoppingcart = $_SESSION["shoppingcart"];
@@ -65,10 +66,13 @@
 							else
 							{
 								$shoppingcart = new ShoppingCart;
-								$_SESSION["shoppingcart"] = $shoppingcart;
 							}
+							//add/remove items
 							$shoppingcart->handle_post();
-							$shoppingcart->display();
+							//save after add/remove into session
+							$_SESSION["shoppingcart"] = $shoppingcart;
+							//display the content
+							$shoppingcart->display($languagemanager->language);
 						?>
 					</div>
 					<!--<img src=\"resources/design/right.png\" alt=\"error loading resources/design/right.png\">-->
