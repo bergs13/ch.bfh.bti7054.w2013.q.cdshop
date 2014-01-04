@@ -22,9 +22,14 @@
 		public function read_all($ordered = false, $descending = false)
 		{
 			$this->cds = $this->cddatamanager->get_all($ordered, $descending);
-			$this->display_list();
+			$this->display_list(true);
 		} 
-		private function display_list()
+		public function read_all_for_edit($ordered = false, $descending = false)
+		{
+			$this->cds = $this->cddatamanager->get_all($ordered, $descending);
+			$this->display_list(false);
+		} 
+		private function display_list($readonly)
 		{
 			//cds with details ans add to cart buttons
 			while ($cd = $this->cds->fetch_object()) 
@@ -37,11 +42,16 @@
 				echo "</td>";
 				echo "<td>";
 				echo "<form action=\"\" method=\"post\">";
-				echo "<input type=\"hidden\" name=\"addcartcdid\" value=\"$cd->id\">";
-				echo "<input type=\"hidden\" name=\"cdinterpreter\" value=\"$cd->interpreter\">";
-				echo "<input type=\"hidden\" name=\"cdtitle\" value=\"$cd->title\">";
-				echo "<input type=\"hidden\" name=\"cdprice\" value=\"$cd->price\">";
-				echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
+				
+				if($readonly)
+				{
+					echo "<input type=\"hidden\" name=\"addcartcdid\" value=\"$cd->id\">";
+					echo "<input type=\"hidden\" name=\"cdinterpreter\" value=\"$cd->interpreter\">";
+					echo "<input type=\"hidden\" name=\"cdtitle\" value=\"$cd->title\">";
+					echo "<input type=\"hidden\" name=\"cdprice\" value=\"$cd->price\">";
+					echo "<input type=\"submit\" value=\"$this->addtocartlabel\">";
+				}
+				
 				echo "</form>";
 				echo "</td>";
 				echo "</tr>";

@@ -19,7 +19,7 @@
 
 				var marker = new google.maps.Marker({
 					position: latLng,
-					title:"Hello World!"
+					title:"Wankdorffeldstrasse 102"
 				});
 				marker.setMap(map);
 			}
