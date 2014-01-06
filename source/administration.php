@@ -49,16 +49,21 @@
 				$useradmin = "Manage users";
 				$cdadmin = "Manage CDs";
 			}
+			
 			//page output
 			echo "<h1>$administration</h1>";
+			//user admin
 			echo "<h2 value=\"show\" onclick=\"javascript:switchuseradmin()\">$useradmin</h2>";
 			echo "<div id=\"useradmin\">";
-			echo "TEST";
+			$usermanager = new UserManager($languagemanager->language);
+			$usermanager->handle_post();
 			echo "</div>";
+		
+			//cd admin
 			echo "<h2 value=\"show\" onclick=\"javascript:switchcdadmin()\">$cdadmin</h2>";
 			echo "<div id=\"cdadmin\">";
-			$manager = new CDManager($languagemanager->language);
-			$manager->read_all_for_edit();
+			$cdmanager = new CDManager($languagemanager->language);
+			$cdmanager->handle_post();
 			echo "</div>";
 		?>
 	</body>

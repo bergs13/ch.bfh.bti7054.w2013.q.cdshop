@@ -23,6 +23,6 @@
 			//output
 			echo "<h1>$overview</h1";
 			$manager = new CDManager($languagemanager->language);
-			$manager->read_all();
+			$manager->get_overview();
 		?>	</body>
 </html>
