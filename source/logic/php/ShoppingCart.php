@@ -56,8 +56,8 @@
 				//cart 2/2
 				echo "Total: $overallpricesum";
 				echo "<br><br>";
-				//go to checkout button 1
-				echo 	"<form action=\"index.php?page=checkout.php\" method=\"post\">";
+				//go to checkout button
+				echo 	"<form action=\"index.php?page=checkout\" method=\"post\">";
 				echo 	"<input type=\"submit\" value=\"$checkoutlabel\">";
 				echo 	"</form>";
 			}

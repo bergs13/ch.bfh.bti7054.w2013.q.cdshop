@@ -6,26 +6,15 @@
 		<meta name="author" content="bergs13">
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 		<script type="text/javascript">
-			function switchuseradmin()
+			function switch_div(divname)
 			{
-				if (document.getElementById("useradmin").style.display=="none")
+				if (document.getElementById(divname).style.display=="none")
 				{
-					document.getElementById("useradmin").style.display="";
+					document.getElementById(divname).style.display="";
 				}
 				else
 				{
-					document.getElementById("useradmin").style.display="none";
-				}
-			}
-			function switchcdadmin()
-			{
-				if (document.getElementById("cdadmin").style.display=="none")
-				{
-					document.getElementById("cdadmin").style.display="";
-				}
-				else
-				{
-					document.getElementById("cdadmin").style.display="none";
+					document.getElementById(divname).style.display="none";
 				}
 			}
 		</script>
@@ -53,14 +42,14 @@
 			//page output
 			echo "<h1>$administration</h1>";
 			//user admin
-			echo "<h2 value=\"show\" onclick=\"javascript:switchuseradmin()\">$useradmin</h2>";
+			echo "<h2 value=\"show\" onclick=\"javascript:switch_div('useradmin')\">$useradmin</h2>";
 			echo "<div id=\"useradmin\">";
 			$usermanager = new UserManager($languagemanager->language);
 			$usermanager->handle_post();
 			echo "</div>";
 		
 			//cd admin
-			echo "<h2 value=\"show\" onclick=\"javascript:switchcdadmin()\">$cdadmin</h2>";
+			echo "<h2 value=\"show\" onclick=\"javascript:switch_div('cdadmin')\">$cdadmin</h2>";
 			echo "<div id=\"cdadmin\">";
 			$cdmanager = new CDManager($languagemanager->language);
 			$cdmanager->handle_post();

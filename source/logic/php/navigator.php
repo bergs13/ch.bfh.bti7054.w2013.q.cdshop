@@ -1,6 +1,7 @@
 <?php
 	class Navigator
 	{
+		private $menupages = array();
 		private $pages = array();
 		private $defaultPage = "";
 		private $activePage = "";
@@ -9,99 +10,15 @@
 		{
 			$this->menulanguage = $language;
 		}
-		public function set_pages($loggedIn)
+		public function set_pages($isloggedin, $isadmin)
 		{
-			$this->add_page('overview', 'Übersicht', 'Overview', true); //first entry is the default page
-			$this->add_page('about', 'Über', 'About');//last entry displays the menu
-			if(!$loggedIn)
-			{
-				$this->add_page('login', 'Anmelden', 'Login');
-			}
-			else
-			{
-				if($_SESSION["user"] == "admin")
-				{
-					$this->add_page('administration', 'Administration', 'Administration');
-				}
-				else
-				{
-					$this->add_page('account', 'Konto ('.$_SESSION["user"].')', 'Account ('.$_SESSION["user"].')');
-				}
-				$this->add_page('logout', 'Abmelden', 'Logout');
-			}
-		}
-		public function display_menu($updateActivePage = true) 
-		{
-			if($updateActivePage)
-			{
-				$this->update_activePage();
-			}
-			echo "<ul>";
-			foreach($this->pages as $pageName => $pageTitle)
-			{
-				$class = "inactive";
-				$lang = $this->menulanguage;
-				if(!empty($this->activePage)
-					&& $pageName == $this->activePage)
-				{
-					$class = "active";
-				}
-				echo "<li>";
-				echo 	"<div id=\"navButton\" class=\"$class\">";
-				echo 		"<a href=\"index.php?page=$pageName\" alt=\"$pageTitle[$lang]\"><div id=\"navButtonLinkArea\">$pageTitle[$lang]</div></a>";
-				echo 	"</div>";
-				echo "</li>";
-			}
-			echo "</ul>";
-		}
-		public function navigate($updateActivePage = false)
-		{
-			if($updateActivePage)
-			{
-				$this->update_activePage();
-			}
-			if(!empty($this->activePage))
-			{
-				include(dirname(__FILE__) . '/' . '../../' . urlencode($this->activePage) . '.php');
-			}
-			else
-			{
-				if(empty($this->defaultPage))
-				{
-					echo 'Default-Seite nicht gefunden.';
-				}
-				else
-				{
-					echo 'Seite nicht gefunden. Zurück zur <a href="index.php">Startseite</a>';
-				}
-			}
-		}
-		private function add_page($pageName, $pageTitleDE, $pageTitleEN, $isDefault = false)
-		{
-			//replace umlauts with html code
-			$pageTitleDE = htmlentities($pageTitleDE); 
-			$pageTitleEN = htmlentities($pageTitleEN);
+			//set the menu pages
+			$this->set_menu_pages($isloggedin, $isadmin);
 			
-			//add page to array
-			if(!isset($this->pages))
-			{
-				//initialize
-				$this->pages = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
-			}
-			else
-			{
-				//expand
-				$temp = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
-				$this->pages = $this->pages + $temp;
-			}
-			
-			//mark the defaultpage
-			if($isDefault)
-			{
-				$this->defaultPage = $pageName;
-			}
+			//other pages
+			$this->add_page('checkout', 'Kasse', 'Checkout', $this->pages);
 		}
-		private function update_activePage()
+		public function update_active_page()
 		{
 			$page = "";
 			//get the page with http get
@@ -128,6 +45,118 @@
 			{
 				$this->activePage = $this->defaultPage;
 			}		
+		}
+		public function display_menu() 
+		{
+			echo "<ul>";
+			foreach($this->menupages as $pageName => $pageTitle)
+			{
+				$class = "inactive";
+				$nohoverdivname = "";
+				$lang = $this->menulanguage;
+				if(!empty($this->activePage)
+					&& $pageName == $this->activePage)
+				{
+					$class = "active";
+					$nohoverdivname = "navButton$pageName";
+				}
+				echo "<li>";
+				echo 	"<div id=\"navButton\" name=\"navButton$pageName\" class=\"$class\"
+							onmouseover=\"javascript:set_div_class('navButton$pageName', '$nohoverdivname', 'active')\" 
+							onmouseout=\"javascript:set_div_class('navButton$pageName', '$nohoverdivname', 'inactive')\">";
+				echo 		"<a href=\"index.php?page=$pageName\" alt=\"$pageTitle[$lang]\"><div id=\"navButtonLinkArea\">$pageTitle[$lang]</div></a>";
+				echo 	"</div>";
+				echo "</li>";
+			}
+			echo "</ul>";
+		}
+		public function navigate()
+		{
+			if(!empty($this->activePage))
+			{
+				include(dirname(__FILE__) . '/' . '../../' . urlencode($this->activePage) . '.php');
+			}
+			else
+			{
+				if(empty($this->defaultPage))
+				{
+					echo 'Default-Seite nicht gefunden.';
+				}
+				else
+				{
+					echo 'Seite nicht gefunden. Zurück zur <a href="index.php">Startseite</a>';
+				}
+			}
+		}
+		private function set_menu_pages($isloggedin, $isadmin)
+		{
+			$this->add_menu_page('overview', 'Übersicht', 'Overview', true); //first entry is the default page
+			$this->add_menu_page('about', 'Über', 'About');
+			if(!$isloggedin)
+			{
+				$this->add_menu_page('login', 'Anmelden', 'Login');
+			}
+			else
+			{
+				if($isadmin)
+				{
+					$this->add_menu_page('administration', 'Administration', 'Administration');
+				}
+				else
+				{
+					$this->add_menu_page('account', 'Konto ('.$_SESSION["user"].')', 'Account ('.$_SESSION["user"].')');
+				}
+				$this->add_menu_page('logout', 'Abmelden', 'Logout');
+			}
+		}
+		private function add_page($pageName, $pageTitleDE, $pageTitleEN)
+		{
+			//replace umlauts with html code
+			$pageTitleDE = htmlentities($pageTitleDE); 
+			$pageTitleEN = htmlentities($pageTitleEN);
+			
+			//add page to array
+			if(!isset($this->pages))
+			{
+				//initialize
+				$this->pages = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+				echo "Init";
+			}
+			else
+			{
+				//expand
+				$temp = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+				$this->pages = $this->pages + $temp;
+			}
+		}
+		private function add_menu_page($pageName, $pageTitleDE, $pageTitleEN, $isDefault = false)
+		{
+			//add page to menu pages 
+			//replace umlauts with html code
+			$pageTitleDE = htmlentities($pageTitleDE); 
+			$pageTitleEN = htmlentities($pageTitleEN);
+			//add page to array
+			if(!isset($this->menupages))
+			{
+				//initialize
+				$this->menupages = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+				echo "Init";
+			}
+			else
+			{
+				//expand
+				$temp = array($pageName => array("DE" => $pageTitleDE, "EN" => $pageTitleEN));
+				$this->menupages = $this->menupages + $temp;
+			}
+			
+			//add the page to all pages
+			$this->add_page($pageName, $pageTitleDE, $pageTitleEN);
+			
+			//mark the default menu page
+			if($isDefault)
+			{
+				$this->defaultPage = $pageName;
+			}
 		}
 	}
 ?>

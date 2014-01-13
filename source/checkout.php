@@ -2,27 +2,25 @@
 <html>
 	<head>
 		<title>Checkout</title>
-		<meta name="description" content="Checkout ">
+		<meta name="description" content="Kasse zum spezifizieren und absenden einer Bestellung">
 		<meta name="author" content="bergs13">
 		<link rel="stylesheet" href="styles/page.css" type="text/css">
 	</head>
 	<body>
 		<?php	
 			//translations
-			$overview;
+			$checkout;
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				$overview = "Übersicht";
+				$checkout = "Kasse";
 			}
 			else if($languagemanager->language == "EN")
 			{
-				$overview = "Overview";
+				$checkout = "Checkout";
 			}
 			
 			//output
-			echo "<h1>$overview</h1";
-			$manager = new CDManager($languagemanager->language);
-			$manager->read_all();
+			echo "<h1>$checkout</h1";
 		?>	</body>
 </html>

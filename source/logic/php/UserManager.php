@@ -29,11 +29,11 @@
 		{
 			if(isset($_POST["adduser"]))
 			{
-				$this->get_adminaddview();
+				$this->get_editorview();
 			}
 			else if(isset($_POST["edituserid"]))
 			{
-				$this->get_admineditview($_POST["edituserid"]);
+				$this->get_editorview($_POST["edituserid"]);
 			}
 			else if(isset($_POST["deleteuserid"]))
 			{
@@ -44,21 +44,38 @@
 				$this->get_adminoverview();
 			}
 		}
-		private function get_adminaddview()
-		{
-			echo "Add view";
-		}
-		private function get_admineditview($userid)
-		{
-			$result = $this->userdatamanager->get_user($userid);
-			if($result)
+		private function get_editorview($userid = -1)
+		{			
+			//set the values for the form fields
+			//add values
+			$id = -1;
+			$username = "";
+			$password = "";
+			$defaultadress = "";
+			//overwrite with db values if id set
+			if($userid > 0)
 			{
-				echo $result->id;
-				echo "</br>";
-				echo $result->username;
-				echo "</br>";
-				echo $result->password;
-			}		
+				$user = $this->userdatamanager->get_user($userid);
+				if($user)
+				{
+					$id = $user->id;
+					$username = $user->username;
+					$password = $user->password;
+					$defaultadress = $user->defaultadress;
+				}			
+			}
+			
+			//form output
+			echo "<form action=\"\" method=\"post\">";
+			echo "<input type=\"hidden\" name=\"saveuserid\" value=\"$user->id\">";
+			echo "<table>";
+			//texts
+			echo "<tr><td>Username:</td><td><input name=\"username\" value=\"$username\"></input></td></tr>";
+			echo "<tr><td>Password:</td><td><input name=\"password\" value\"$password\"></input></td></tr>";
+			//save/cancel buttons 
+			echo "<tr><td colspan=\"2\"><input type=\"submit\" value=\"Save\"><input type=\"submit\" value=\"Cancel\"</td></tr>";
+			echo "</table>";
+			echo "</form>";
 		}
 		private function get_adminoverview()
 		{

@@ -73,16 +73,17 @@
 			session_unset(); // ... delete all session variables,
 			session_destroy(); // ... and end it
 		}
-		public function manage_menuitems($navigator)
+		public function is_logged_in()
 		{
-			if($navigator instanceof Navigator)
+			return isset($_SESSION["user"]);
+		}
+		public function is_administrator()
+		{
+			if($this->is_logged_in())
 			{
-				$navigator->set_pages(isset($_SESSION["user"]));
+				return $_SESSION["user"] == "admin";
 			}
-			else
-			{
-				echo "class parameter error in Authenticator manage_menuitems";
-			}
+			return false;
 		}
 	}
 ?>

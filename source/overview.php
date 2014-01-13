@@ -23,6 +23,7 @@
 			//output
 			echo "<h1>$overview</h1";
 			$manager = new CDManager($languagemanager->language);
-			$manager->get_overview();
+			$authenticator = new Authenticator($languagemanager->language);
+			$manager->get_overview($authenticator->is_logged_in());
 		?>	</body>
 </html>

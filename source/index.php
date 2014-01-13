@@ -14,6 +14,15 @@
 		<meta name="description" content="Projekt CD Shop für das Modul Web programming (BTI7054)">
 		<meta name="author" content="bergs13">
 		<link rel="stylesheet" href="styles/design.css" type="text/css">
+		<script type="text/javascript">
+			function set_div_class(name, excludedname, classname) 
+			{
+				if(name != excludedname)
+				{
+					document.getElementsByName(name)[0].className = classname;
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<?php		
@@ -31,14 +40,15 @@
 			$authenticator->handle_login();
 			//Authenticator manages menu pages of navigator
 			$navigator = new Navigator($languagemanager->language);
-			$authenticator->manage_menuitems($navigator);						
+			$navigator->set_pages($authenticator->is_logged_in(), $authenticator->is_administrator());						
 		?>
 		<div id="site">
 			<div id="header">
 				<img src="resources/design/header.png" alt="error loading resources/design/header.png" border="0">				
 				<div id="navigation">
 					<?php
-						//Navigator displays the menu
+						//Navigator firts sets the active page and then displays the menu page (active page could be in menu)
+						$navigator->update_active_page();
 						$navigator->display_menu();
 					?>
 				</div>
@@ -57,22 +67,26 @@
 				<div id="right">
 					<div id="shoppingcart">
 						<?php
-							$shoppingcart;
-							//get cart from session or create if not exists
-							if (isset($_SESSION["shoppingcart"]))
+							if($authenticator->is_logged_in())
 							{
-								$shoppingcart = $_SESSION["shoppingcart"];
+								$shoppingcart;
+								//get cart from session or create if not exists
+								if (isset($_SESSION["shoppingcart"]))
+								{
+									$shoppingcart = $_SESSION["shoppingcart"];
+								}
+								else
+								{
+									$shoppingcart = new ShoppingCart;
+								}
+								//add/remove items
+								$shoppingcart->handle_post();
+								//save after add/remove into session
+								$_SESSION["shoppingcart"] = $shoppingcart;
+								
+								//display the content
+								$shoppingcart->display($languagemanager->language);
 							}
-							else
-							{
-								$shoppingcart = new ShoppingCart;
-							}
-							//add/remove items
-							$shoppingcart->handle_post();
-							//save after add/remove into session
-							$_SESSION["shoppingcart"] = $shoppingcart;
-							//display the content
-							$shoppingcart->display($languagemanager->language);
 						?>
 					</div>
 					<!--<img src=\"resources/design/right.png\" alt=\"error loading resources/design/right.png\">-->

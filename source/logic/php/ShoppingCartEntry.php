@@ -37,9 +37,28 @@
 		public function display()
 		{
 			echo "<div id=\"shoppingcartentry\">";
-			echo 	"$this->cdinterpreter</br>";
-			echo 	"$this->cdtitle</br>";
-			echo 	"Count: ".$this->count." Price: ".$this->pricesum."</br>";
+			echo	"<table>";
+			echo 	"<tr><td colspan=\"2\">$this->cdinterpreter</td></tr>";
+			echo 	"<tr><td colspan=\"2\">$this->cdtitle</td></tr>";
+			echo 	"<tr><td colspan=\"2\">Count: ".$this->count." Price: ".$this->pricesum."</td></tr>";
+			echo	"<tr>";
+			echo	"<td colspan=\"2\">";
+						//(+)-Button
+			echo 		"<form action=\"\" method=\"post\">";
+			echo 		"<input type=\"hidden\" name=\"addcartcdid\" value=\"$this->cdid\">";
+			echo 		"<input type=\"hidden\" name=\"cdinterpreter\" value=\"$this->cdinterpreter\">";
+			echo 		"<input type=\"hidden\" name=\"cdtitle\" value=\"$this->cdtitle\">";
+			echo 		"<input type=\"hidden\" name=\"cdprice\" value=\"$this->price\">";
+			echo 		"<input type=\"submit\" value=\"+\">";
+			echo 		"</form>";
+						//(-)-Button
+			echo 		"<form action=\"\" method=\"post\">";
+			echo 		"<input type=\"hidden\" name=\"removecartcdid\" value=\"$this->cdid\">";
+			echo 		"<input type=\"submit\" value=\"-\">";
+			echo 		"</form>";
+			echo	"</td>";
+			echo	"</tr>";
+			echo	"</table>";
 			echo "</div";
 		}
 	}
