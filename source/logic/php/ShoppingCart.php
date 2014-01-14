@@ -1,4 +1,4 @@
-<?php	
+sd<?php	
 	class ShoppingCart
 	{
 		private $cartentries = array();
@@ -22,7 +22,10 @@
 				$this->remove_cd($_POST["removecartcdid"]);
 			}
 		}
-		public function display($language)
+		public function display_checkout($language)
+		{
+		}
+		public function display_sidebar($language)
 		{
 			//manage language texts
 			$shoppingcartlabel;

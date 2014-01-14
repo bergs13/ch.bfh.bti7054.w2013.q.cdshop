@@ -42,7 +42,7 @@
 			echo 	"<tr><td colspan=\"2\">$this->cdtitle</td></tr>";
 			echo 	"<tr><td colspan=\"2\">Count: ".$this->count." Price: ".$this->pricesum."</td></tr>";
 			echo	"<tr>";
-			echo	"<td colspan=\"2\">";
+			echo	"<td>";
 						//(+)-Button
 			echo 		"<form action=\"\" method=\"post\">";
 			echo 		"<input type=\"hidden\" name=\"addcartcdid\" value=\"$this->cdid\">";
@@ -51,6 +51,8 @@
 			echo 		"<input type=\"hidden\" name=\"cdprice\" value=\"$this->price\">";
 			echo 		"<input type=\"submit\" value=\"+\">";
 			echo 		"</form>";
+			echo	"</td>";
+			echo	"<td>";
 						//(-)-Button
 			echo 		"<form action=\"\" method=\"post\">";
 			echo 		"<input type=\"hidden\" name=\"removecartcdid\" value=\"$this->cdid\">";

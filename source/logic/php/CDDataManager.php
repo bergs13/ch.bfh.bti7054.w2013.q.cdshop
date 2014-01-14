@@ -20,20 +20,20 @@
 			$statement->close();
 			return $result;
 		}
-		public function insert($interpreter, $album, $year)
+		public function insert($cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price)
 		{
-			$query = "INSERT cd (interpreter, album, year) VALUES (?, ?, ?)";
+			$query = "INSERT cd (cdtypeid, cdcategoryid, cdgenreid, interpreter, title, year, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			$statement =  $this->prepare($query);
 			//Bind the params (ex. "isd", $intvar, $stringvar, $doublevar)
-			$statement->bind_param("sss", $interpreter, $album, $year); 			
+			$statement->bind_param("iiissid", $$cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price); 			
 			$statement->execute();
 			$statement->close();
 		}
-		public function update($id, $interpreter, $album, $year) 
+		public function update($cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price, $id) 
 		{
-			$query = "UPDATE cd SET interpreter=?, album=?, year=? WHERE id=?";
+			$query = "UPDATE cd SET cdtypeid=?, cdcategoryid=?, cdgenreid=?, interpreter=?, title=?, year=?, price=? WHERE id=?";
 			$statement =  $this->prepare($query);
-			$statement->bind_param("ssii", $interpreter, $album, $year, $id); 			
+			$statement->bind_param("iiissidi", $cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price, $id); 			
 			$statement->execute();
 			$statement->close();
 		}

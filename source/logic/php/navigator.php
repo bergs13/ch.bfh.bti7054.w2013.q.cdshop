@@ -17,6 +17,8 @@
 			
 			//other pages
 			$this->add_page('checkout', 'Kasse', 'Checkout', $this->pages);
+			$this->add_page('usereditor', 'Benutzer-Editor', 'User-Editor', $this->pages);
+			$this->add_page('cdeditor', 'CD-Editor', 'CD-Editor', $this->pages);
 		}
 		public function update_active_page()
 		{
