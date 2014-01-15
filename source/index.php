@@ -85,7 +85,7 @@
 								$_SESSION["shoppingcart"] = $shoppingcart;
 								
 								//display the content
-								$shoppingcart->display_sidebar($languagemanager->language);
+								$shoppingcart->display($languagemanager->language);
 							}
 						?>
 					</div>

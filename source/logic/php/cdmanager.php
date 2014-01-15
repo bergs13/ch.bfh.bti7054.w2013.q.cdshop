@@ -143,25 +143,32 @@
 			//radios
 			echo "<tr>";
 			echo "<td valign=\"top\">Type:</td><td valign=\"top\">";
-					$checked;
+					$checked = "";
 					while($cdtype = $cdtypes->fetch_object())
 					{
-						$checked = "checked=\"unchecked\"";
 						if($cdtype->id == $cdtypeid)
 						{
-							$checked = "checked=\"checked\"";
+							$checked = "checked";
+						}
+						else 
+						{
+							$checked = "";
 						}
 						echo "<input type=\"radio\" name=\"cdtype\" value=\"$cdtype->id\" $checked>$cdtype->name</input><br>";
 					}
 					echo "<br>";
 			echo "</td><td width=\"50px\" rowspan=\"2\"></td>";
 			echo "<td valign=\"top\">Genre:</td><td valign=\"top\" rowspan=\"2\">";
+					$checked = "";
 					while($cdgenre = $cdgenres->fetch_object())
 					{	
-						$checked = "checked=\"unchecked\"";
 						if($cdgenre->id == $cdgenreid)
 						{
-							$checked = "checked=\"checked\"";
+							$checked = "checked";
+						}
+						else 
+						{
+							$checked = "";
 						}
 						echo "<input type=\"radio\" name=\"cdgenre\" value=\"$cdgenre->id\" $checked>$cdgenre->name</input><br>";
 					}
@@ -169,12 +176,16 @@
 			echo "</td>";
 			echo "</tr>";
 			echo "<tr><td valign=\"top\">Category:</td><td valign=\"top\">";
+					$checked = "";
 					while($cdcategory = $cdcategories->fetch_object())
 					{
-						$checked = "checked=\"unchecked\"";
 						if($cdcategory->id == $cdcategoryid)
 						{
-							$checked = "checked=\"checked\"";
+							$checked = "checked";
+						}
+						else 
+						{
+							$checked = "";
 						}
 						echo "<input type=\"radio\" name=\"cdcategory\" value=\"$cdcategory->id\" $checked>$cdcategory->name</input><br>";
 					}
@@ -227,7 +238,7 @@
 				echo "<table>";
 				echo "<tr>";
 				echo "<td>";
-				echo "$cd->interpreter, $cd->title, $cd->year (Key=$cd->id)";
+				echo "$cd->interpreter, $cd->title ($cd->year), $cd->price";
 				echo "</td>";
 				
 				if($isloggedin)

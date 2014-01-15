@@ -25,7 +25,7 @@
 			$query = "INSERT cd (cdtypeid, cdcategoryid, cdgenreid, interpreter, title, year, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			$statement =  $this->prepare($query);
 			//Bind the params (ex. "isd", $intvar, $stringvar, $doublevar)
-			$statement->bind_param("iiissid", $$cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price); 			
+			$statement->bind_param("iiissid", $cdtypeid, $cdcategoryid, $cdgenreid, $interpreter, $title, $year, $price); 			
 			$statement->execute();
 			$statement->close();
 		}

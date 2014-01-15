@@ -63,6 +63,12 @@
 			echo	"</table>";
 			echo "</div";
 		}
+		public function as_tablerow()
+		{
+			$tablerow = "<tr><td>$this->cdinterpreter</td><td>$this->cdtitle</td><td>$this->price</td>
+							<td>$this->count</td><td>$this->pricesum</td></tr>";
+			return $tablerow;
+		}
 	}
 ?>
 				

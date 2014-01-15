@@ -1,6 +1,7 @@
 <?php
 	class UserManager
 	{
+		private $language;
 		private $userdatamanager;
 		private $users;
 		//labels
@@ -10,11 +11,12 @@
 		private $savelabel;
 		private $cancellabel;
 		public function __construct($language)
-		{
+		{	
+			$this->language = $language;
 			$this->userdatamanager = new UserDataManager; 
 			
 			//manage language texts
-			if($language == "DE")
+			if($this->language == "DE")
 			{
 				$this->addlabel = "Hinzufügen";
 				$this->editlabel = "Bearbeiten";
@@ -22,7 +24,7 @@
 				$this->savelabel = "Speichern";
 				$this->cancellabel = "Abbrechen";
 			}
-			else if($language = "EN")
+			else if($this->language = "EN")
 			{
 				$this->addlabel = "Add";
 				$this->editlabel = "Update";
@@ -59,7 +61,7 @@
 			}
 			else
 			{
-				echo "<form action=\"\" method=\"post\">";
+				echo "<form action=\"index.php?page=account\" method=\"post\">";
 			}
 			echo "<table>";
 			//texts
@@ -75,55 +77,86 @@
 					}
 					else
 					{
-						echo "<form action=\"\" method=\"post\">";
+						echo "<form action=\"index.php?page=account\" method=\"post\">";
 					}
-					echo "<input type=\"submit\" name=\"usersavecancelled\" value=\"$this->cancellabel\"";
+					if($authenticator->is_administrator())
+					{
+						echo "<input type=\"submit\" name=\"usersavecancelled\" value=\"$this->cancellabel\"";
+					}
 					echo "</td></tr>";
 					echo "</form>";
 			echo "</table>";
 			echo "</form>";
 		}
-		public function handle_post()
+		public function handle_post($isadmin = true)
 		{
-			if(isset($_POST["adduser"]))
+			if($isadmin)
 			{
-				$this->get_editorview();
-			}
-			else if(isset($_POST["edituserid"]))
-			{
-				$this->get_editorview($_POST["edituserid"]);
+				if(isset($_POST["adduser"]))
+				{
+					$this->get_editorview();
+				}
+				else if(isset($_POST["edituserid"]))
+				{
+					$this->get_editorview($_POST["edituserid"]);
+				}
+				else if(isset($_POST["saveuser"])
+						&& isset($_POST["saveuserid"]))
+				{
+					//Edit
+					if($_POST["saveuserid"] < 0)
+					{
+						if(isset($_POST["username"])
+							&& isset($_POST["password"]))
+						{
+							$this->userdatamanager->insert($_POST["username"], $_POST["password"]);
+						}
+					}
+					//Add
+					else		
+					{
+						if(isset($_POST["username"])
+							&& isset($_POST["password"]))
+						{
+							$this->userdatamanager->update($_POST["username"], $_POST["password"], $_POST["saveuserid"]);
+						}
+					}
+					$this->get_adminoverview();
+				}
+				else if(isset($_POST["deleteuserid"]))
+				{
+					$this->userdatamanager->delete($_POST["deleteuserid"]);
+					$this->get_adminoverview();
+				}
+				else
+				{
+					$this->get_adminoverview();
+				}
 			}
 			else if(isset($_POST["saveuser"])
-					&& isset($_POST["saveuserid"]))
+				&& isset($_POST["saveuserid"]))
 			{
-				//Edit
-				if($_POST["saveuserid"] < 0)
-				{
-					if(isset($_POST["username"])
-						&& isset($_POST["password"]))
-					{
-						$this->userdatamanager->insert($_POST["username"], $_POST["password"]);
-					}
-				}
-				//Add
-				else		
+				//Only edit of personal user allowed
+				if($_POST["saveuserid"] > 0 
+					&& isset($_SESSION["userid"])
+					&& $_POST["saveuserid"] == $_SESSION["userid"])
 				{
 					if(isset($_POST["username"])
 						&& isset($_POST["password"]))
 					{
 						$this->userdatamanager->update($_POST["username"], $_POST["password"], $_POST["saveuserid"]);
+						$datasaved;
+						if($this->language == "DE")
+						{
+							$datasaved = "Daten erfolgreich gespeichert!";
+						}
+						else if($this->language = "EN")
+						{
+							$datasaved = "Data saved sucessfully!";
+						}
+						echo $datasaved;
 					}
 				}
-				$this->get_adminoverview();
-			}
-			else if(isset($_POST["deleteuserid"]))
-			{
-				$this->userdatamanager->delete($_POST["deleteuserid"]);
-				$this->get_adminoverview();
-			}
-			else
-			{
-				$this->get_adminoverview();
 			}
 		}
 		private function get_adminoverview()

@@ -57,6 +57,7 @@
 						&& $_POST["pw"]==$user->password) 
 					{
 						$userValid = true;
+						$_SESSION["userid"]=$user->id;
 						$_SESSION["user"]=$_POST["user"];
 						break;
 					}

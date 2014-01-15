@@ -1,4 +1,4 @@
-sd<?php	
+<?php	
 	class ShoppingCart
 	{
 		private $cartentries = array();
@@ -22,10 +22,42 @@ sd<?php
 				$this->remove_cd($_POST["removecartcdid"]);
 			}
 		}
-		public function display_checkout($language)
+		public function get_checkout_html($language)
 		{
+			//manage language texts
+			$interpreter;
+			$title;
+			$price;
+			$count;
+			$pricesum;
+			if($language == "DE")
+			{
+				$interpreter = "Interpret";
+				$title = "Titel";
+				$price = "Preis";
+				$count = "Menge";
+				$pricesum = "Total";
+			}
+			else if($language = "EN")
+			{
+				$interpreter = "Interpreter";
+				$title = "Title";
+				$price = "Price";
+				$count = "Amount";
+				$pricesum = "Total";
+			}
+			
+			$checkouthtml = "<table width=\"100%\"><tr><th>$interpreter</th><th>$title</th><th>$price</th><th>$count</th><th>$pricesum</th></tr>";
+			$overallpricesum = 0.00;
+			foreach ($this->cartentries as $id => $cartentry)
+			{
+				$checkouthtml .= $cartentry->as_tablerow();
+				$overallpricesum += $cartentry->get_pricesum();
+			}
+			$checkouthtml .= "<tr><td colspan=\"5\" align=\"right\">$overallpricesum</td></tr></table>";
+			return $checkouthtml;
 		}
-		public function display_sidebar($language)
+		public function display($language)
 		{
 			//manage language texts
 			$shoppingcartlabel;

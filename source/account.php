@@ -13,15 +13,21 @@
 			$languagemanager = new LanguageManager;
 			if($languagemanager->language == "DE")
 			{
-				$account = "TODO: Konto";
+				$account = "Konto";
 			}
 			else /*if($languagemanager->language == "EN")*/
 			{
-				$account = "TODO: Account";
+				$account = "Account";
 			}
 			
 			//output
 			echo "<h1>$account</h1>";
+			$usermanager = new UserManager($languagemanager->language);
+			$usermanager->handle_post(false);
+			if(isset($_SESSION["userid"]))
+			{
+				$usermanager->get_editorview($_SESSION["userid"]);
+			}
 		?>
 	</body>
 </html>
